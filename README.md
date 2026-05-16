@@ -12,7 +12,7 @@ Financial RL papers cherry-pick seeds. Train 5 agents (same code, same data, dif
 
 ### Shipping
 
-**[Seed Ledger](https://seedledger.onrender.com)** is a site for showing research alongside the actual seeds and metrics behind it, so claims are auditable instead of cherry-picked. Same philosophy as the paper. Full stack built solo: FastAPI plus SQLAlchemy on the backend, React 19 on the frontend, Postgres on Render. [Code](https://github.com/Elgoghel/seedledger).
+**[Seed Ledger](https://elgoghel.com)** is a site for showing research alongside the actual seeds and metrics behind it, so claims are auditable instead of cherry-picked. Same philosophy as the paper. Full stack built solo: FastAPI plus SQLAlchemy on the backend, React 19 on the frontend, self-hosted via Cloudflare Tunnel. [Code](https://github.com/Elgoghel/seedledger).
 
 **Polymarket / Kalshi trading bot** runs live with real capital. Risk-first by design: hard kill switches, fractional Kelly sizing, drawdown limits before clever signals. Private repo.
 
@@ -24,4 +24,4 @@ Looking for SWE and ML internships, Summer 2026. NYC, NJ, or remote.
 
 elgoghel@gmail.com  ·  [linkedin.com/in/marwanelgoghel](https://linkedin.com/in/marwanelgoghel)
 
-*Last updated: 2026-05-15*
+*Last updated: 2026-05-16*
