@@ -1,21 +1,27 @@
-### Marwan Elgoghel
+![Sharpe ratio across all 5 seeds, 2024 OOS, from Every Seed Every Result (Elgoghel 2026)](assets/sharpe.svg)
+
+## Marwan Elgoghel
 
 Software Engineering + Math & Stats minors at Monmouth University. Graduating May 2027. Building ML systems for financial and prediction markets.
 
----
+### Research
 
-**Research**
+**[Every Seed, Every Result](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6382938)** (SSRN preprint, March 2026)
 
-[Every Seed, Every Result: Intent-to-Treat Reporting for Financial Reinforcement Learning](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6382938) — SSRN preprint, 2026. 26.5M-parameter SAC portfolio agent on S&P 500 constituents (2019–2022) under explicit transaction-cost model. 28 pre-registered runs, zero exclusions. ITT median 2024 OOS Sharpe 1.73, CAGR 36.8% vs SPY 25.4%; FF5+Mom adj. R² ≈ 0. Paired block-bootstrap (10k); Bloomberg data.
+Financial RL papers cherry-pick seeds. Train 5 agents (same code, same data, different random seed), publish only the best one. Your reported Sharpe inflates 15%, CAGR nearly doubles. The fix is the one clinical trials use: intent-to-treat. Pre-register every seed, report every outcome, no exclusions. To walk the talk I trained a 26.5M SAC on the S&P 500 with 5 pre-registered seeds. ITT median 2024 OOS Sharpe: 1.73, which does not beat SPY's 1.87. The protocol made me say so.
 
-**Shipping**
+### Shipping
 
-[Seed Ledger](https://seedledger.onrender.com) — full-stack research showcase. FastAPI + SQLAlchemy 2.0 + Postgres backend; React 19 + Recharts frontend; deployed on Render. SHA-256 keyed-hash admin auth, rate-limited public API, token-based inquiry system with admin reply panel, transactional emails. [Code](https://github.com/Elgoghel/seedledger).
+**[Seed Ledger](https://seedledger.onrender.com)** is a site for showing research alongside the actual seeds and metrics behind it, so claims are auditable instead of cherry-picked. Same philosophy as the paper. Full stack built solo: FastAPI plus SQLAlchemy on the backend, React 19 on the frontend, Postgres on Render. [Code](https://github.com/Elgoghel/seedledger).
 
-Polymarket / Kalshi autonomous trading bot — Python, gradient-boosting model retrained on historical resolution data, fractional Kelly compounding, hard kill switches, drawdown-aware position sizing (private).
+**Polymarket / Kalshi trading bot** runs live with real capital. Risk-first by design: hard kill switches, fractional Kelly sizing, drawdown limits before clever signals. Private repo.
 
----
+### Currently
 
-**Currently** — open to SWE / ML internships, Summer 2026. NYC, NJ, or remote.
+Looking for SWE and ML internships, Summer 2026. NYC, NJ, or remote.
 
-**Contact** — elgoghel@gmail.com · [linkedin.com/in/marwanelgoghel](https://linkedin.com/in/marwanelgoghel)
+### Contact
+
+elgoghel@gmail.com  ·  [linkedin.com/in/marwanelgoghel](https://linkedin.com/in/marwanelgoghel)
+
+*Last updated: 2026-05-15*
