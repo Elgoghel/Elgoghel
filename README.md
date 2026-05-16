@@ -1,4 +1,4 @@
-![Sharpe ratio across all 5 seeds, 2024 OOS, from Every Seed Every Result (Elgoghel 2026)](assets/sharpe-v2.svg)
+![Sharpe ratio across all 5 seeds, 2024 OOS, from Every Seed Every Result (Elgoghel 2026)](assets/sharpe-anim-v1.svg)
 
 ## Marwan Elgoghel
 

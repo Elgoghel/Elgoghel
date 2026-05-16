@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 230" width="820" height="230" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="14">
+  <style><![CDATA[
+    text { fill: #9ca3af; }
+    rect.bar { transform-origin: 100px center; transform: scaleX(0); animation: grow 1.5s ease-out 0.2s forwards; }
+    @keyframes grow { to { transform: scaleX(1); } }
+    rect.median { fill: #6e7681; animation: grow 1.5s ease-out 0.2s forwards, makeGreen 0.5s ease-out 1.8s forwards; }
+    @keyframes makeGreen { to { fill: #3fb950; } }
+    rect.best { fill: #6e7681; animation: grow 1.5s ease-out 0.2s forwards, makeRed 0.5s ease-out 2.0s forwards; }
+    @keyframes makeRed { to { fill: #f85149; } }
+    text.num { opacity: 0; animation: fadeIn 0.3s ease-out 1.6s forwards; }
+    text.lbl-med { opacity: 0; animation: fadeIn 0.5s ease-out 2.0s forwards; }
+    text.lbl-best { opacity: 0; animation: fadeIn 0.5s ease-out 2.3s forwards; }
+    text.lbl-bench { opacity: 0; animation: fadeIn 0.5s ease-out 2.0s forwards; }
+    @keyframes fadeIn { to { opacity: 1; } }
+  ]]></style>
+
+  <text x="20" y="22" font-weight="600">Sharpe ratio, 2024 OOS, every seed:</text>
+
+  <text x="20" y="52">seed  7</text>
+  <rect class="bar" x="100" y="40" width="358" height="14" fill="#6e7681"/>
+  <text class="num" x="510" y="52">1.79</text>
+
+  <text x="20" y="76">seed 11</text>
+  <rect class="median" x="100" y="64" width="346" height="14"/>
+  <text class="num" x="510" y="76">1.73</text>
+  <text class="lbl-med" x="565" y="76" fill="#3fb950">&#8592; median</text>
+
+  <text x="20" y="100">seed 13</text>
+  <rect class="bar" x="100" y="88" width="298" height="14" fill="#6e7681"/>
+  <text class="num" x="510" y="100">1.49</text>
+
+  <text x="20" y="124">seed 17</text>
+  <rect class="bar" x="100" y="112" width="266" height="14" fill="#6e7681"/>
+  <text class="num" x="510" y="124">1.33</text>
+
+  <text x="20" y="148">seed 19</text>
+  <rect class="best" x="100" y="136" width="398" height="14"/>
+  <text class="num" x="510" y="148">1.99</text>
+  <text class="lbl-best" x="565" y="148" fill="#f85149">&#8592; best of 5, cherry-pick</text>
+
+  <line x1="20" y1="170" x2="790" y2="170" stroke="#30363d" stroke-width="1"/>
+
+  <text x="20" y="196">SPY</text>
+  <rect class="bar" x="100" y="184" width="374" height="14" fill="#58a6ff" fill-opacity="0.6"/>
+  <text class="num" x="510" y="196">1.87</text>
+  <text class="lbl-bench" x="565" y="196" fill="#58a6ff">&#8592; benchmark</text>
+</svg>
