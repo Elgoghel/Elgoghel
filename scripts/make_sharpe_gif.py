@@ -60,22 +60,24 @@ FONT = load_font(14)
 FONT_BOLD = load_font(14)
 
 # --- animation timing ---
-DUR_GROW = 1.5
-T_NUMS_FADE = 1.6
-DUR_NUMS_FADE = 0.3
-T_MEDIAN_GREEN = 1.8
-DUR_FILL = 0.5
-T_BEST_RED = 2.0
-T_LBL_MED = 2.0
-T_LBL_BENCH = 2.0
-T_LBL_BEST = 2.3
+DUR_GROW = 2.5
+T_NUMS_FADE = 2.6
+DUR_NUMS_FADE = 0.4
+T_MEDIAN_GREEN = 2.8
+DUR_FILL = 0.6
+T_BEST_RED = 3.0
+T_LBL_MED = 3.0
+T_LBL_BENCH = 3.0
+T_LBL_BEST = 3.3
 DUR_LBL = 0.5
 
-TOTAL = 3.0
-FPS = 50
+TOTAL = 4.0
+FPS = 60
 
 def ease_out(t):
-    return 1 - (1 - t) ** 3
+    """Sinusoidal ease-in-out: smoother than cubic ease-out."""
+    import math
+    return 0.5 - 0.5 * math.cos(math.pi * t)
 
 def clamp01(x):
     return max(0.0, min(1.0, x))
