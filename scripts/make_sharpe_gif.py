@@ -161,19 +161,19 @@ def main():
     for i in range(n_frames):
         t = i / FPS
         frames.append(render_frame(t))
-    # single hold frame extended to 4s via duration; WebP handles long single-frame durations cleanly
-    frames.append(render_frame(TOTAL))
 
-    durations = [1000 // FPS] * n_frames + [4000]
+    durations = [1000 // FPS] * n_frames
 
+    # loop=1 plays once and stops on the last frame (final state with all bars + labels).
+    # Browser holds that frame indefinitely until page refresh restarts the animation.
     frames[0].save(
         out,
         save_all=True,
         append_images=frames[1:],
         duration=durations,
-        loop=0,
+        loop=1,
         quality=80,
-        method=6,  # best quality/size tradeoff (slowest encode)
+        method=6,
     )
     print(f"Wrote {out} ({out.stat().st_size // 1024} KB, {len(frames)} frames)")
 
