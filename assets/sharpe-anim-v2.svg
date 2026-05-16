@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 230" width="820" height="230" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="14">
+  <style>text { fill: #9ca3af; }</style>
+
+  <text x="20" y="22" font-weight="600">Sharpe ratio, 2024 OOS, every seed:</text>
+
+  <text x="20" y="52">seed  7</text>
+  <path id="b7" fill="#6e7681" d="M100,40 H100 V54 H100 Z">
+    <animate attributeName="d" begin="0s;b7.end" dur="30s" fill="freeze"
+      values="M100,40 H100 V54 H100 Z;
+              M100,40 H458 V54 H100 Z;
+              M100,40 H458 V54 H100 Z;
+              M100,40 H100 V54 H100 Z"
+      keyTimes="0;0.05;0.99;1"/>
+  </path>
+  <text x="510" y="52" opacity="0">1.79
+    <animate attributeName="opacity" begin="0s;n7.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.04;0.06;0.99;1" id="n7"/>
+  </text>
+
+  <text x="20" y="76">seed 11</text>
+  <path id="b11" fill="#6e7681" d="M100,64 H100 V78 H100 Z">
+    <animate attributeName="d" begin="0s;b11.end" dur="30s" fill="freeze"
+      values="M100,64 H100 V78 H100 Z;
+              M100,64 H446 V78 H100 Z;
+              M100,64 H446 V78 H100 Z;
+              M100,64 H100 V78 H100 Z"
+      keyTimes="0;0.05;0.99;1"/>
+    <animate attributeName="fill" begin="0s;b11f.end" dur="30s" fill="freeze"
+      values="#6e7681;#6e7681;#3fb950;#3fb950;#6e7681" keyTimes="0;0.05;0.07;0.99;1" id="b11f"/>
+  </path>
+  <text x="510" y="76" opacity="0">1.73
+    <animate attributeName="opacity" begin="0s;n11.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.04;0.06;0.99;1" id="n11"/>
+  </text>
+  <text x="565" y="76" fill="#3fb950" opacity="0">&#8592; median
+    <animate attributeName="opacity" begin="0s;l11.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.07;0.09;0.99;1" id="l11"/>
+  </text>
+
+  <text x="20" y="100">seed 13</text>
+  <path id="b13" fill="#6e7681" d="M100,88 H100 V102 H100 Z">
+    <animate attributeName="d" begin="0s;b13.end" dur="30s" fill="freeze"
+      values="M100,88 H100 V102 H100 Z;
+              M100,88 H398 V102 H100 Z;
+              M100,88 H398 V102 H100 Z;
+              M100,88 H100 V102 H100 Z"
+      keyTimes="0;0.05;0.99;1"/>
+  </path>
+  <text x="510" y="100" opacity="0">1.49
+    <animate attributeName="opacity" begin="0s;n13.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.04;0.06;0.99;1" id="n13"/>
+  </text>
+
+  <text x="20" y="124">seed 17</text>
+  <path id="b17" fill="#6e7681" d="M100,112 H100 V126 H100 Z">
+    <animate attributeName="d" begin="0s;b17.end" dur="30s" fill="freeze"
+      values="M100,112 H100 V126 H100 Z;
+              M100,112 H366 V126 H100 Z;
+              M100,112 H366 V126 H100 Z;
+              M100,112 H100 V126 H100 Z"
+      keyTimes="0;0.05;0.99;1"/>
+  </path>
+  <text x="510" y="124" opacity="0">1.33
+    <animate attributeName="opacity" begin="0s;n17.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.04;0.06;0.99;1" id="n17"/>
+  </text>
+
+  <text x="20" y="148">seed 19</text>
+  <path id="b19" fill="#6e7681" d="M100,136 H100 V150 H100 Z">
+    <animate attributeName="d" begin="0s;b19.end" dur="30s" fill="freeze"
+      values="M100,136 H100 V150 H100 Z;
+              M100,136 H498 V150 H100 Z;
+              M100,136 H498 V150 H100 Z;
+              M100,136 H100 V150 H100 Z"
+      keyTimes="0;0.05;0.99;1"/>
+    <animate attributeName="fill" begin="0s;b19f.end" dur="30s" fill="freeze"
+      values="#6e7681;#6e7681;#f85149;#f85149;#6e7681" keyTimes="0;0.06;0.08;0.99;1" id="b19f"/>
+  </path>
+  <text x="510" y="148" opacity="0">1.99
+    <animate attributeName="opacity" begin="0s;n19.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.04;0.06;0.99;1" id="n19"/>
+  </text>
+  <text x="565" y="148" fill="#f85149" opacity="0">&#8592; best of 5, cherry-pick
+    <animate attributeName="opacity" begin="0s;l19.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.08;0.10;0.99;1" id="l19"/>
+  </text>
+
+  <line x1="20" y1="170" x2="790" y2="170" stroke="#30363d" stroke-width="1"/>
+
+  <text x="20" y="196">SPY</text>
+  <path id="bSPY" fill="#58a6ff" fill-opacity="0.6" d="M100,184 H100 V198 H100 Z">
+    <animate attributeName="d" begin="0s;bSPY.end" dur="30s" fill="freeze"
+      values="M100,184 H100 V198 H100 Z;
+              M100,184 H474 V198 H100 Z;
+              M100,184 H474 V198 H100 Z;
+              M100,184 H100 V198 H100 Z"
+      keyTimes="0;0.05;0.99;1"/>
+  </path>
+  <text x="510" y="196" opacity="0">1.87
+    <animate attributeName="opacity" begin="0s;nSPY.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.04;0.06;0.99;1" id="nSPY"/>
+  </text>
+  <text x="565" y="196" fill="#58a6ff" opacity="0">&#8592; benchmark
+    <animate attributeName="opacity" begin="0s;lSPY.end" dur="30s" fill="freeze"
+      values="0;0;1;1;0" keyTimes="0;0.07;0.09;0.99;1" id="lSPY"/>
+  </text>
+</svg>
