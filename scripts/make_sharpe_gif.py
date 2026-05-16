@@ -72,7 +72,7 @@ T_LBL_BEST = 2.3
 DUR_LBL = 0.5
 
 TOTAL = 3.0
-FPS = 25
+FPS = 50
 
 def ease_out(t):
     return 1 - (1 - t) ** 3
