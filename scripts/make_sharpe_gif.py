@@ -25,7 +25,9 @@ SEEDS = [
 SPY = ("SPY", 1.87, "benchmark")
 
 # --- styling (mirrors the SVG version) ---
-W, H = 820, 230
+W_OUT, H_OUT = 820, 230
+SS = 3  # supersample factor: render at 3x then downsample for smooth anti-aliased edges
+W, H = W_OUT * SS, H_OUT * SS
 BG = (13, 17, 23)          # GitHub dark
 GRAY_BAR = (110, 118, 129)
 GREEN = (63, 185, 80)
@@ -34,13 +36,13 @@ BLUE = (88, 166, 255)
 DIVIDER = (48, 54, 61)
 TEXT = (156, 163, 175)
 
-BAR_X = 100
-BAR_H = 14
-BAR_SCALE = 200  # pixels per Sharpe unit
+BAR_X = 100 * SS
+BAR_H = 14 * SS
+BAR_SCALE = 200 * SS  # pixels per Sharpe unit
 
 ROW_YS = {
-    "seed  7": 40, "seed 11": 64, "seed 13": 88, "seed 17": 112, "seed 19": 136,
-    "SPY": 184,
+    "seed  7": 40 * SS, "seed 11": 64 * SS, "seed 13": 88 * SS, "seed 17": 112 * SS, "seed 19": 136 * SS,
+    "SPY": 184 * SS,
 }
 LABEL_YS = {k: y + 12 for k, y in ROW_YS.items()}
 
@@ -56,8 +58,8 @@ def load_font(size=14):
             return ImageFont.truetype(p, size)
     return ImageFont.load_default()
 
-FONT = load_font(14)
-FONT_BOLD = load_font(14)
+FONT = load_font(14 * SS)
+FONT_BOLD = load_font(14 * SS)
 
 # --- animation timing ---
 DUR_GROW = 2.5
@@ -89,20 +91,15 @@ def render_frame(t):
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img, "RGBA")
 
-    # title
-    d.text((20, 8), "Sharpe ratio, 2024 OOS, every seed:", fill=TEXT, font=FONT_BOLD)
+    d.text((20 * SS, 8 * SS), "Sharpe ratio, 2024 OOS, every seed:", fill=TEXT, font=FONT_BOLD)
 
-    # bars
     grow_t = ease_out(clamp01(t / DUR_GROW))
 
     for label, sharpe, kind in SEEDS:
         y = ROW_YS[label]
-        full_w = int(sharpe * BAR_SCALE / 2 * 4)  # scale: 200 * (sharpe/2.0) * 4 = ... wait
-        # Bar widths: scale=200/Sharpe_unit so 1.79 -> 358
-        full_w = int(sharpe * BAR_SCALE)
-        cur_w = int(full_w * grow_t)
+        full_w = sharpe * BAR_SCALE  # float; high-res
+        cur_w = full_w * grow_t
 
-        # fill color based on time
         if kind == "median" and t >= T_MEDIAN_GREEN:
             fill_t = clamp01((t - T_MEDIAN_GREEN) / DUR_FILL)
             color = lerp_color(GRAY_BAR, GREEN, fill_t)
@@ -112,70 +109,62 @@ def render_frame(t):
         else:
             color = GRAY_BAR
 
-        d.text((20, y - 4), label, fill=TEXT, font=FONT)
+        d.text((20 * SS, (y - 4)), label, fill=TEXT, font=FONT)
         if cur_w > 0:
             d.rectangle([BAR_X, y, BAR_X + cur_w, y + BAR_H], fill=color)
 
-        # number fades in
         if t >= T_NUMS_FADE:
             opacity = clamp01((t - T_NUMS_FADE) / DUR_NUMS_FADE)
             alpha = int(255 * opacity)
             num_color = TEXT + (alpha,)
-            d.text((510, y - 4), f"{sharpe:.2f}", fill=num_color, font=FONT)
+            d.text((510 * SS, y - 4), f"{sharpe:.2f}", fill=num_color, font=FONT)
 
-    # median label
     if t >= T_LBL_MED:
         opacity = clamp01((t - T_LBL_MED) / DUR_LBL)
         alpha = int(255 * opacity)
-        d.text((565, ROW_YS["seed 11"] - 4), "← median", fill=GREEN + (alpha,), font=FONT)
+        d.text((565 * SS, ROW_YS["seed 11"] - 4), "← median", fill=GREEN + (alpha,), font=FONT)
 
-    # best label
     if t >= T_LBL_BEST:
         opacity = clamp01((t - T_LBL_BEST) / DUR_LBL)
         alpha = int(255 * opacity)
-        d.text((565, ROW_YS["seed 19"] - 4), "← best of 5, cherry-picked", fill=RED + (alpha,), font=FONT)
+        d.text((565 * SS, ROW_YS["seed 19"] - 4), "← best of 5, cherry-picked", fill=RED + (alpha,), font=FONT)
 
-    # divider
-    d.line([(20, 170), (790, 170)], fill=DIVIDER, width=1)
+    d.line([(20 * SS, 170 * SS), (790 * SS, 170 * SS)], fill=DIVIDER, width=SS)
 
-    # SPY row
     label, sharpe, kind = SPY
     y = ROW_YS["SPY"]
-    full_w = int(sharpe * BAR_SCALE)
-    cur_w = int(full_w * grow_t)
-    d.text((20, y - 4), label, fill=TEXT, font=FONT)
+    full_w = sharpe * BAR_SCALE
+    cur_w = full_w * grow_t
+    d.text((20 * SS, y - 4), label, fill=TEXT, font=FONT)
     if cur_w > 0:
-        # blue with 60% opacity equivalent baked in
         spy_blue = lerp_color(BG, BLUE, 0.6)
         d.rectangle([BAR_X, y, BAR_X + cur_w, y + BAR_H], fill=spy_blue)
     if t >= T_NUMS_FADE:
         opacity = clamp01((t - T_NUMS_FADE) / DUR_NUMS_FADE)
         alpha = int(255 * opacity)
-        d.text((510, y - 4), f"{sharpe:.2f}", fill=TEXT + (alpha,), font=FONT)
+        d.text((510 * SS, y - 4), f"{sharpe:.2f}", fill=TEXT + (alpha,), font=FONT)
     if t >= T_LBL_BENCH:
         opacity = clamp01((t - T_LBL_BENCH) / DUR_LBL)
         alpha = int(255 * opacity)
-        d.text((565, y - 4), "← benchmark", fill=BLUE + (alpha,), font=FONT)
+        d.text((565 * SS, y - 4), "← benchmark", fill=BLUE + (alpha,), font=FONT)
 
-    return img
+    # downsample with high-quality filter for smooth sub-pixel anti-aliased edges
+    return img.resize((W_OUT, H_OUT), Image.LANCZOS)
 
 def main():
     out_dir = Path(__file__).parent.parent / "assets"
     out_dir.mkdir(exist_ok=True)
-    out = out_dir / "sharpe-anim.gif"
+    out = out_dir / "sharpe-anim.webp"
 
     n_frames = int(TOTAL * FPS)
     frames = []
     for i in range(n_frames):
         t = i / FPS
         frames.append(render_frame(t))
-    # add a long hold frame
-    hold_frames = [render_frame(TOTAL)] * 50  # ~2 second hold
-    frames.extend(hold_frames)
+    # single hold frame extended to 4s via duration; WebP handles long single-frame durations cleanly
+    frames.append(render_frame(TOTAL))
 
-    durations = [1000 // FPS] * n_frames + [40] * 50
-    # final frame extra long
-    durations[-1] = 3000
+    durations = [1000 // FPS] * n_frames + [4000]
 
     frames[0].save(
         out,
@@ -183,8 +172,8 @@ def main():
         append_images=frames[1:],
         duration=durations,
         loop=0,
-        optimize=True,
-        disposal=2,
+        quality=80,
+        method=6,  # best quality/size tradeoff (slowest encode)
     )
     print(f"Wrote {out} ({out.stat().st_size // 1024} KB, {len(frames)} frames)")
 
